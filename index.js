@@ -2,7 +2,8 @@ const https = require("https");
 
 const proxy = require("node-global-proxy").default;
 
-// https://github.com/wwwzbwcom/node-global-proxy
+// *** NOTE, we 
+//see https://github.com/wwwzbwcom/node-global-proxy
 
 
 proxy.setConfig({
