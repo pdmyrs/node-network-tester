@@ -11,7 +11,7 @@ Here is a typical agent:
 Here is another one:
 [node-global-proxy](https://github.com/wwwzbwcom/node-global-proxy)
 
-<p>Examples of using the proxy-agaent pacakge:</p>
+<p>Examples of https get requests using various http implementations and proxy agents:</p>
 
 
 1. node built-in **https** + **node-global-proxy"**<p>
