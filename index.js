@@ -1,18 +1,37 @@
 const https = require("https");
-
 const proxy = require("node-global-proxy").default;
 
-// *** NOTE, we 
-//see https://github.com/wwwzbwcom/node-global-proxy
-
+/**
+ * uses the built in https module.
+ *
+ * this starts a "global" proxy agent.
+ *
+ * the proxy.start() function starts the proxy and it keeps running until
+ * proxy.stop() is called.
+ *
+ * see https://github.com/wwwzbwcom/node-global-proxy
+ *
+ *
+ * NOTE: if you run this and then comment out proxy.start() and proxy.stop() it
+ * still works on the next run !!!
+ *
+ */
 
 proxy.setConfig({
   http: "http://185.46.212.88:10302",
-  https: "http://185.46.212.88:10302"
+  https: "http://185.46.212.88:10302",
 });
+
+/**
+ *
+ * start the proxy agent
+ * comment this out to see the error:
+ * "Client network socket disconnected before secure TLS connection was established" 
+ *
+ */
 proxy.start();
 
-
+console.log(proxy);
 let request = https.get(
   "https://jsonplaceholder.typicode.com/users?_limit=2",
   (res) => {
@@ -26,6 +45,7 @@ let request = https.get(
 
     let data = "";
 
+
     res.on("data", (chunk) => {
       data += chunk;
     });
@@ -35,16 +55,17 @@ let request = https.get(
       console.log(JSON.parse(data));
     });
 
-
-
-
   }
 );
 request.on("error", (err) => {
   console.error(
     `Encountered an error trying to make a request: ${err.message}`
   );
+  console.log(proxy);
 });
 
 
-//proxy.stop();
+/**
+ *  stop the global proxy agent.
+ */
+proxy.stop();
