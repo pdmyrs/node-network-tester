@@ -32,8 +32,14 @@ proxy.setConfig({
 proxy.start();
 
 console.log(proxy);
+
+
+let HTTPS_RESOURCE = "https://main--troweprice-rf--hlxsites.hlx.page/";
+//let HTTPS_RESOURCE = "https://jsonplaceholder.typicode.com/users?_limit=2";
+
+
 let request = https.get(
-  "https://jsonplaceholder.typicode.com/users?_limit=2",
+  HTTPS_RESOURCE,
   (res) => {
     if (res.statusCode !== 200) {
       console.error(
@@ -52,7 +58,8 @@ let request = https.get(
 
     res.on("close", () => {
       console.log("Retrieved all data");
-      console.log(JSON.parse(data));
+      // console.log(JSON.parse(data));
+      console.log(data);
     });
 
   }
